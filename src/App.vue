@@ -8,10 +8,10 @@
 import GameBoard from './components/GameBoard';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    GameBoard
-  }
+    GameBoard,
+  },
 };
 </script>
 

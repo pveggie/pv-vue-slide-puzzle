@@ -15,27 +15,27 @@
 <script>
 export default {
   props: {
-    id: String
+    id: String,
   },
   computed: {
     label() {
       return this.id.replace(/buttonGroup/, '');
-    }
+    },
   },
   methods: {
     emitScrollRequest(direction) {
       const options = {
         direction,
-        buttonId: this.id
+        buttonId: this.id,
       };
       this.$emit('scroll', options);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-@import './../assets/styles/variables';
+@import "./../assets/styles/variables";
 
 $button-width: 35px;
 
@@ -75,7 +75,7 @@ $button-width: 35px;
     width: 0;
     height: 0;
     border-top: ($button-width / 2) solid transparent;
-    border-bottom: ($button-width /2) solid transparent;
+    border-bottom: ($button-width / 2) solid transparent;
   }
 }
 

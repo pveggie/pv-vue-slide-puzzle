@@ -25,16 +25,16 @@ import GameTrackSquare from './GameTrackSquare';
 export default {
   name: 'GameTrack',
   components: {
-    GameTrackSquare
+    GameTrackSquare,
   },
   props: {
-    'trackIndex': Number,
-    'squares': Array,
-    'squareSize': Number,
-    'currentSquare': Number,
-    'scrollBy': Number,
-    'scrollDirection': String,
-    'squaresToMove': Number
+    trackIndex: Number,
+    squares: Array,
+    squareSize: Number,
+    currentSquare: Number,
+    scrollBy: Number,
+    scrollDirection: String,
+    squaresToMove: Number,
   },
   data() {
     return {
@@ -47,13 +47,13 @@ export default {
         loop: true,
       },
       remainingScrollBy: 0,
-      updatedCurrentSquare: 0
+      updatedCurrentSquare: 0,
     };
   },
   watch: {
     scrollBy() {
-      this.handleScrolling()
-    }
+      this.handleScrolling();
+    },
   },
   computed: {
     slider() {
@@ -70,7 +70,7 @@ export default {
         result = this.updatedCurrentSquare + this.remainingScrollBy <= this.lastSquareIndex;
       }
       return result;
-    }
+    },
   },
   methods: {
     handleScrolling() {
@@ -82,37 +82,34 @@ export default {
       if (this.isTargetReachable) {
         // run the basic method to set the square and emit new value
         this.slideToTargetSquare();
-      }
-      // if target is out of bounds
-      else {
-        this.slideToEnd()
+      } else {
+        this.slideToEnd();
         // this.resetSliderPosition();
         this.slideToTargetSquare();
       }
     },
     // slide the required number of steps in the requireed direction
-    slideToTargetSquare() {     
+    slideToTargetSquare() {
       if (this.scrollDirection === 'right') {
         this.updatedCurrentSquare -= this.remainingScrollBy;
         this.slider.prev(this.remainingScrollBy);
       } else {
         this.updatedCurrentSquare += this.remainingScrollBy;
         this.slider.next(this.remainingScrollBy);
-      };
+      }
 
       this.emitNewCurrentSquare(this.updatedCurrentSquare);
     },
     slideToEnd() {
       let squaresToMove;
 
-      if (this.scrollDirection === "right") {
-        squaresToMove = this.updatedCurrentSquare - 0 + 1
-        this.slider.prev(squaresToMove)
+      if (this.scrollDirection === 'right') {
+        squaresToMove = (this.updatedCurrentSquare - 0) + 1;
+        this.slider.prev(squaresToMove);
         this.updatedCurrentSquare = this.lastSquareIndex;
-      }
-      else {
-        squaresToMove = this.lastSquareIndex - this.updatedCurrentSquare + 1
-        this.slider.next()
+      } else {
+        squaresToMove = (this.lastSquareIndex - this.updatedCurrentSquare) + 1;
+        this.slider.next();
         this.updatedCurrentSquare = 0;
       }
 
@@ -123,20 +120,20 @@ export default {
         'update-current-square',
         {
           trackIndex: this.trackIndex,
-          updatedCurrentSquare
-        }
+          updatedCurrentSquare,
+        },
       );
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-@import './../assets/styles/variables';
+@import "./../assets/styles/variables";
 
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
 $square-size: 80px;
 

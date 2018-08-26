@@ -10,8 +10,8 @@ describe('GameTrackSquare', () => {
     beforeEach(() => {
       wrapper = mount(GameTrackSquare, {
         propsData: {
-          isStar: true
-        }
+          isStar: true,
+        },
       });
     });
 
@@ -29,8 +29,8 @@ describe('GameTrackSquare', () => {
     beforeEach(() => {
       wrapper = mount(GameTrackSquare, {
         propsData: {
-          isStar: false
-        }
+          isStar: false,
+        },
       });
     });
 

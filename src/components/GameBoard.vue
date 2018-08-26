@@ -33,7 +33,7 @@ export default {
   name: 'GameBoard',
   components: {
     GameTrack,
-    GameButtonGroup
+    GameButtonGroup,
   },
   data() {
     return {
@@ -55,8 +55,8 @@ export default {
             { isStar: true },
             { isStar: false },
             { isStar: false },
-            { isStar: false }
-          ]
+            { isStar: false },
+          ],
         },
         {
           id: 2,
@@ -74,8 +74,8 @@ export default {
             { isStar: false },
             { isStar: false },
             { isStar: false },
-            { isStar: false }
-          ]
+            { isStar: false },
+          ],
         },
         {
           id: 2,
@@ -93,41 +93,33 @@ export default {
             { isStar: false },
             { isStar: false },
             { isStar: true },
-            { isStar: false }
-          ]
-        }
-      ]
+            { isStar: false },
+          ],
+        },
+      ],
     };
   },
   methods: {
     // scroll each track left/right according puzzle rules
     scroll(options) {
+      for (let i = 0; i <= this.tracks.length - 1; i += 1) {
+        const track = this.tracks[i];
+        this.$set(track, 'scrollBy', track.scrollByValues[options.buttonId]);
 
-      for (let track of this.tracks) {
-        this.$set(
-          track,
-          'scrollBy',
-          track.scrollByValues[options.buttonId]
-        );
-
-        this.$set(track,
-        'scrollDirection',
-        options.direction
-        )
+        this.$set(track, 'scrollDirection', options.direction);
       }
     },
     updateTrackStatus(params) {
-      const track = this.tracks[params['trackIndex']];
-      this.$set(track, 'currentSquare', params.updatedCurrentSquare)
-      this.$set(track, 'scrollBy', 0)
-    }
-  }
+      const track = this.tracks[params.trackIndex];
+      this.$set(track, 'currentSquare', params.updatedCurrentSquare);
+      this.$set(track, 'scrollBy', 0);
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-
-@import './../assets/styles/variables';
+@import "./../assets/styles/variables";
 
 .game-board {
   display: flex;
@@ -151,7 +143,6 @@ export default {
   flex-grow: 1;
   background-color: $gray-dark;
   padding: 20px 10px;
-  
 }
 
 .controls {

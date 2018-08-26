@@ -1,4 +1,4 @@
-/* global describe, it, expect, beforeEach, jest, spyOn */
+/* global describe, it, expect, beforeEach, jest, */
 
 // it is necessary to add vue-template-compiler in order to import from vue/test-utils
 import { mount } from '@vue/test-utils';
@@ -10,8 +10,8 @@ describe('GameButtonGroup', () => {
   beforeEach(() => {
     wrapper = mount(GameButtonGroup, {
       propsData: {
-        id: 'buttonGroupTestLabel'
-      }
+        id: 'buttonGroupTestLabel',
+      },
     });
   });
 
@@ -36,7 +36,7 @@ describe('GameButtonGroup', () => {
 
     beforeEach(() => {
       emitScrollRequest = jest.fn();
-      wrapper.setMethods({ emitScrollRequest: emitScrollRequest });
+      wrapper.setMethods({ emitScrollRequest });
     });
 
     it('calls the emit scroll event', () => {
@@ -72,14 +72,14 @@ describe('GameButtonGroup', () => {
 
     it('emits the buttonId', () => {
       wrapper.find('.button-group__btn--prev').trigger('click');
-      expect(wrapper.emitted().scroll[0][0]['buttonId']).toBe(
-        'buttonGroupTestLabel'
+      expect(wrapper.emitted().scroll[0][0].buttonId).toBe(
+        'buttonGroupTestLabel',
       );
     });
 
     it('emits the scroll direction', () => {
       wrapper.find('.button-group__btn--prev').trigger('click');
-      expect(wrapper.emitted().scroll[0][0]['direction']).toBe('left');
+      expect(wrapper.emitted().scroll[0][0].direction).toBe('left');
     });
   });
 });
