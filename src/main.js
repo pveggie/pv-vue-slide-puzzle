@@ -3,7 +3,7 @@
 import Vue from 'vue';
 import Siema from 'vue2-siema';
 
-import '@/assets/styles/variables.scss';
+import './assets/styles/_variables.scss';
 
 import App from './App';
 
@@ -15,5 +15,5 @@ Vue.use(Siema);
 new Vue({
   el: '#app',
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
 });
