@@ -1,11 +1,10 @@
 <!-- handles styling of squares and squares with stars-->
 <template>
   <div
-    :class="['square', { 'square--star': isStar }]"
-    :data-index="index"
-    >
+    :class="['square', { 'square--star': isStar }, { 'square--even': isEven} ]"
+  >
     <div v-if="isStar" class="star"></div>
-    <div v-else class="number">{{index + 1}}</div>
+    <div v-else class="number">{{ index + 1 }}</div>
   </div>
 </template>
 
@@ -13,11 +12,16 @@
 export default {
   name: 'GameTrackSquare',
   props: ['isStar', 'index'],
+  computed: {
+    isEven() {
+      return (this.index + 1) % 2;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
-@import './../assets/styles/variables';
+@import "./../assets/styles/variables";
 
 $rotate-angle: 72deg;
 
@@ -28,23 +32,21 @@ $border-top-size: $border-left-size * $tan36;
 $star-color: gold;
 
 .square {
-  
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   width: $square-size;
   height: $square-size;
+  background-color: $violet;
+}
 
-  &:before {
-    content: attr(data-index);
-  }
+.square--even {
+  background-color: $pink;
+}
 
-
-  @if attr(data-index number, 0) == 0 {
-    
-    background-color: $pink;
-  }
+.square--star {
+  background-color: $turquoise;
 }
 
 .star {
@@ -57,8 +59,9 @@ $star-color: gold;
   border-top: $border-top-size solid $star-color;
   border-left: $border-left-size solid transparent;
 
-  &:before, &:after {
-    content: '';
+  &:before,
+  &:after {
+    content: "";
     position: absolute;
     display: block;
     width: 0px;
